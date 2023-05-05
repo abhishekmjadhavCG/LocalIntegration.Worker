@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33603.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalIntegration.Worker", "LocalIntegration.Worker\LocalIntegration.Worker.csproj", "{49280FC8-DEAB-4100-91E7-2456CCC6BD1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalIntegration.Service", "LocalIntegration.Service\LocalIntegration.Service.csproj", "{D867E6EA-1C56-4BF5-B111-040EE951765E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49280FC8-DEAB-4100-91E7-2456CCC6BD1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49280FC8-DEAB-4100-91E7-2456CCC6BD1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49280FC8-DEAB-4100-91E7-2456CCC6BD1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49280FC8-DEAB-4100-91E7-2456CCC6BD1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D867E6EA-1C56-4BF5-B111-040EE951765E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D867E6EA-1C56-4BF5-B111-040EE951765E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D867E6EA-1C56-4BF5-B111-040EE951765E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D867E6EA-1C56-4BF5-B111-040EE951765E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8549C2C2-2AC2-46E9-B497-205D50380C53}
+	EndGlobalSection
+EndGlobal
