@@ -8,6 +8,6 @@ namespace LocalIntegration.Service.Core
 {
     internal interface ISourceFileProcessor
     {
-        public Task ReadFileAsync();
+        public Task<bool> ReadFileAsync();
     }
 }

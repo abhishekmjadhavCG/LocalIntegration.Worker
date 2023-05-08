@@ -1,0 +1,12 @@
+C:\Users\amohanja\WorkRelated\Project\LocalIntegration.Worker\LocalIntegration.Service\obj\Debug\net6.0\LocalIntegration.Service.csproj.AssemblyReference.cache
+C:\Users\amohanja\WorkRelated\Project\LocalIntegration.Worker\LocalIntegration.Service\obj\Debug\net6.0\LocalIntegration.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amohanja\WorkRelated\Project\LocalIntegration.Worker\LocalIntegration.Service\obj\Debug\net6.0\LocalIntegration.Service.AssemblyInfoInputs.cache
+C:\Users\amohanja\WorkRelated\Project\LocalIntegration.Worker\LocalIntegration.Service\obj\Debug\net6.0\LocalIntegration.Service.AssemblyInfo.cs
+C:\Users\amohanja\WorkRelated\Project\LocalIntegration.Worker\LocalIntegration.Service\obj\Debug\net6.0\LocalIntegration.Service.csproj.CoreCompileInputs.cache
+C:\Users\amohanja\WorkRelated\Project\LocalIntegration.Worker\LocalIntegration.Service\bin\Debug\net6.0\LocalIntegration.Service.deps.json
+C:\Users\amohanja\WorkRelated\Project\LocalIntegration.Worker\LocalIntegration.Service\bin\Debug\net6.0\LocalIntegration.Service.dll
+C:\Users\amohanja\WorkRelated\Project\LocalIntegration.Worker\LocalIntegration.Service\bin\Debug\net6.0\LocalIntegration.Service.pdb
+C:\Users\amohanja\WorkRelated\Project\LocalIntegration.Worker\LocalIntegration.Service\obj\Debug\net6.0\LocalIntegration.Service.dll
+C:\Users\amohanja\WorkRelated\Project\LocalIntegration.Worker\LocalIntegration.Service\obj\Debug\net6.0\refint\LocalIntegration.Service.dll
+C:\Users\amohanja\WorkRelated\Project\LocalIntegration.Worker\LocalIntegration.Service\obj\Debug\net6.0\LocalIntegration.Service.pdb
+C:\Users\amohanja\WorkRelated\Project\LocalIntegration.Worker\LocalIntegration.Service\obj\Debug\net6.0\ref\LocalIntegration.Service.dll

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "pi9T7UBAs52CdLxrQYRwC1nXVsA4s8oQr309wtOJvj+Q/y+DFZ/yyoe194xNiDMmLR4HzYc/NqFs0beJs3MDGA==",
+  "dgSpecHash": "YjT7PZLRoFNMamDHv/FZc6K6qdbDDWniNZ0I4y7ND+fnDiRum+7R8RMvHKxrw99w/Sh92jQtDnSOPDbeAXr3fQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\amohanja\\WorkRelated\\Project\\LocalIntegration.Worker\\LocalIntegration.Worker\\LocalIntegration.Worker.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,8 @@
     "C:\\Users\\amohanja\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\amohanja\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\6.0.0\\microsoft.extensions.options.configurationextensions.6.0.0.nupkg.sha512",
     "C:\\Users\\amohanja\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\amohanja\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\amohanja\\.nuget\\packages\\newtonsoft.json.schema\\3.0.15\\newtonsoft.json.schema.3.0.15.nupkg.sha512",
     "C:\\Users\\amohanja\\.nuget\\packages\\serilog\\2.10.0\\serilog.2.10.0.nupkg.sha512",
     "C:\\Users\\amohanja\\.nuget\\packages\\serilog.aspnetcore\\6.0.0\\serilog.aspnetcore.6.0.0.nupkg.sha512",
     "C:\\Users\\amohanja\\.nuget\\packages\\serilog.extensions.hosting\\5.0.0\\serilog.extensions.hosting.5.0.0.nupkg.sha512",

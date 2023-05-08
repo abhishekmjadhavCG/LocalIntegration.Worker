@@ -1,3 +1,6 @@
+using LocalIntegration.Service.Core;
+using Serilog;
+
 namespace LocalIntegration.Worker
 {
     public class Worker : BackgroundService
@@ -11,9 +14,31 @@ namespace LocalIntegration.Worker
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            Log.Information("Scheduler started");
+            
+            var sourcesFilePath = Environment.GetEnvironmentVariable("JSON_SOURCE_FILE_PATH");
+            var sourcesFile = Environment.GetEnvironmentVariable("JSON_SOURCE_FILE_NAME");
+
+            if (!File.Exists(Path.Combine(sourcesFilePath, sourcesFile)))
+            {
+                Log.Error("Could not find sources file in the respective folder. Scheduler stopping..");
+                return;
+            }
+            
+            SourceFileProcessor sourceFileProcessor = new SourceFileProcessor(sourcesFilePath);
             while (!stoppingToken.IsCancellationRequested)
             {                
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                Log.Information("Initiaiting the source file processing..");
+
+                var isValid = await sourceFileProcessor.ReadFileAsync();
+
+                //Stopping the service from further executing in case of validation errors.
+                if (!isValid) 
+                { 
+                    Log.Error("Scheduler stopping as json file is not validated.");
+                    break;
+                } 
+
                 await Task.Delay(TimeSpan.FromDays(1), stoppingToken);
             }
         }
