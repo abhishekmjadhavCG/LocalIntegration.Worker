@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Serilog;
 using System.Diagnostics;
+using static LocalIntegration.Service.Enum.LOVEnums;
 
 namespace LocalIntegration.Service.Core
 {
@@ -51,7 +52,7 @@ namespace LocalIntegration.Service.Core
         #region ReadFileAsync
 
         public async Task<bool> ReadFileAsync()
-        {
+        {            
             var isFileValid = false;
             using (StreamReader reader = new StreamReader(combineSourcesFilePath))
             {
@@ -127,8 +128,7 @@ namespace LocalIntegration.Service.Core
                 customer = JObject.Parse(eachCustomerData);
 
                 IList<string> errorMessages;
-                isValidFile = customer.IsValid(schema, out errorMessages);
-
+                isValidFile = customer.IsValid(schema, out errorMessages);                
                 if (!isValidFile)
                 {
                     foreach (var errorMessage in errorMessages)
