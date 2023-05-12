@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LocalIntegration.Service.Core
+{
+    public class Constants
+    {
+        public const string BATCH = "BATCH";
+        public const string RT = "RT"; 
+    }
+}
