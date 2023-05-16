@@ -64,13 +64,13 @@ namespace LocalIntegration.Service.Core
 
                     while (!reader.EndOfStream)
                     {
-                        if (counter == 0)
-                        {
-                            headers = await reader.ReadLineAsync();
-                            counter++;
-                            continue;
-                        }
-
+                        //if (counter == 0)
+                        //{
+                        //    headers = await reader.ReadLineAsync();
+                        //    counter++;
+                        //    continue;
+                        //}
+                        Log.Information($"Starting reading each line in the file...");
                         var eachCustomerDataJson = await reader.ReadLineAsync();
 
                         //continuing to validate next line if the current line is empty or no data.
@@ -100,7 +100,7 @@ namespace LocalIntegration.Service.Core
                     reader.Dispose();
                 }
 
-                Log.Information($"Time taken for reading and validating the file - {watch.Elapsed.ToString()}");
+                Log.Information($"Time taken for reading and validating the file - {watch.Elapsed.ToString()}");                
                 watch.Stop();
             }
 
@@ -120,28 +120,30 @@ namespace LocalIntegration.Service.Core
             JObject? customer;
 
             try
-            {
-                //var combineSourcesFilePath = Path.Combine(sourcesFilePath, sourcesFile);
-                var combineSchemaFilePath = Path.Combine(schemaFilePath, schemaFile);
+            {                
+                var combineSchemaFilePath = Path.Combine(schemaFilePath + "\\JsonSchema", schemaFile);
 
                 schema = JSchema.Parse(File.ReadAllText(combineSchemaFilePath));
-                customer = JObject.Parse(eachCustomerData);
+                customer = JObject.Parse(eachCustomerData); 
 
                 IList<string> errorMessages;
                 isValidFile = customer.IsValid(schema, out errorMessages);                
                 if (!isValidFile)
                 {
+                    Log.Error($"Incorrect json data of the customer at below line \n \n {eachCustomerData} \n\n.");
                     foreach (var errorMessage in errorMessages)
                     {
-                        Log.Warning($"The json is not in correct format. Below are the errors: \n\n {errorMessage} \n");
+                        Log.Error($" Fix the following errors: \n\n Error : {errorMessages.IndexOf(errorMessage) + 1 } - {errorMessage} \n");
                     }
 
                     return isValidFile;
                 }
+
+                //var isComplexValidationsPassed = ValidateSourceFieldsForComplexScenario(eachCustomerData);
             }
             catch (Exception ex)
             {
-                Log.Error($"Error occured while validating the file : {ex.StackTrace}");
+                Log.Error($"Error occured while validating the file : {ex.Message} on the following data \n \n {eachCustomerData} \n \n");
             }
             finally 
             {
@@ -149,6 +151,11 @@ namespace LocalIntegration.Service.Core
                 customer = null;
             }
             return isValidFile;
+        }
+
+        private bool ValidateSourceFieldsForComplexScenario(string eachCustomerData)
+        {
+            return false;
         }
         
         #endregion

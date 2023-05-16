@@ -1,0 +1,582 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "RUN_TIMESTAMP": {
+      "type": "string",
+      "format": "date-time",
+      "description": "last action/modification on this record in the local source system YYYYMMDDHH24MISS"
+    },
+    "CUSTOMER_SOURCE_UNIQUE_ID": {
+      "type": "string",
+      "maxLength": 126,
+      "description": "Unique ID of the customer in the local source system"
+    },
+    "ORGUNIT_CODE": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Organisational unit of the AXA Entity to be given by AML team in the Inception phase"
+    },
+    "PERSON_TITLE": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Title – Mr., Mrs. etc"
+    },
+    "FIRST_NAME": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "If customer is Personal - FIRST_NAME of Customer. If customer is non personal this is NULL.",
+    },
+    "MIDDLE_NAMES": {
+      "type": "string",
+      "maxLength": 700,
+      "description": "Middle names if Personal Customer"
+    },
+    "LAST_NAME": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "If customer is Personal - LAST_NAME of Customer. If customer is non Personal only LAST_NAME is populated, FIRST_NAME is NULL."
+    },
+    "SUFFIX": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Any suffixes following the individuals name. E.g.: III or Junior or Senior"
+    },
+    "CUSTOMER_NAME": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "For Retail Customers: Full Name of the Customer. Concatenation of FIRST_NAME, Middle Names and LAST_NAME. For Corporate Customers: Name of company, same as in COMPANY_NAME field. Used in WLM for alert generation and investigation as well as Alert Investigation in AMM."
+    },
+    "COMPANY_NAME": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "If Business/Corporate - Name of company, same as in CUSTOMER_NAME field"
+    },
+    "COMPANY_FORM": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Only for Corporate Customers. Type of company or legal form , must be one of the codes included in the LV - Company Form tab. Is used in CRR as a Risk Factor.",
+    },
+    "REGISTERED_NUMBER": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "If Customer is Business – Registered no of company"
+    },
+    "INCORPORATION_DATE": {
+      "type": "string",
+      "format": "date",
+      "description": "If Business/Corporate - Date the company was Incorporated"
+    },
+    "INCORPORATION_COUNTRY_CODE": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Only for Corporate Customers. ISO Country Code where the company has been registered. Check the Ref. Tab COUNTRY",
+    },
+    "BUSINESS_SEGMENT_1": {
+      "type": "object",
+      "properties": {
+        "BUSINESS_SEGMENT_1_1": {
+          "type": "string"
+        },
+        "BUSINESS_SEGMENT_1_2": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "BUSINESS_SEGMENT_1_1",
+        "BUSINESS_SEGMENT_1_2"
+      ]
+    },
+    "BUSINESS_SEGMENT_2": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Further business segment classification In CDD detection this field is available as data source field, as a placeholder for further categorising the business of a corporate customer, but is not used in risk assessment scenarios.In EIM Framework this field is used in Full Customer Details screen as Secondary Activity. The field value is exposed as is, no descriptionlookup is foreseen."
+    },
+    "INITIALS": {
+      "type": "string",
+      "maxLength": 5,
+      "description": "Any Initials for the Customer"
+    },
+    "DATE_OF_BIRTH": {
+      "type": "string",
+      "format": "date",
+      "description": "Only for Retail Customers: Date of Birth. For Corporate Customers should be sent eptyUsed in the WLM checks Not feeding this data will increase the number of false positives"
+    },
+    "NAME_OF_BIRTH": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of Birth or Maiden name for Female"
+    },
+    "ADDRESS": {
+      "type": "string",
+      "maxLength": 400,
+      "description": "Full address of the customer. Used in WLM for Alert Investigation. Used in AMM for Alert Investigation."
+    },
+    "ZONE": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Province of address of the customer. It must match one of the codes included in the LV - Provnce tab"
+    },
+    "CITY": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "City of the Customer’s main address"
+    },
+    "POSTAL_CODE": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Postal Code of the Customer’s main"
+    },
+    "COUNTRY_OF_RESIDENCE": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Only for Retail Customers. ISO Country Code of the Address of the customer (Not tax residence). It must be in ISO 3166 Alpha-2 Code format. Check the Ref. Tab COUNTRY to view all codifications"
+    },
+    "COUNTRY_OF_ORIGIN": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Only for Retail Customers. ISO Country Code of the Country of Birth. It must be in ISO 3166 Alpha-2 Code format. Check the Ref. Tab COUNTRY"
+    },
+    "NATIONALITY_CODE": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Only for Retail Customers. ISO Country Code of the Nationality of the customer. It must be in ISO 3166 Alpha-2 Code format. Check the Ref. Tab COUNTRY"
+    },
+    "PLACE_OF_BIRTH": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Place that the customer was born"
+    },
+    "GENDER_CODE": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Only for retail customers used to identify the gender GN001: Male GN002: Female GN003: UnknownEmpty for corporate customers."
+    },
+    "EMPLOYEE_FLAG": {
+      "type": "string",
+      "maxLength": 1,
+      "description": "Flag to indicate the customer is an employee of the AXA local entity. (Y/N)"
+    },
+    "OCCUPATION": {
+      "type": "object",
+      "description": "Only for Retail Customers. Customer occupation or professional activity. It must be one of the codes included in the tab Profile - occupation",
+      "properties": {
+        "OCCUPATION_1": {
+          "type": "string"
+        },
+        "OCCUPATION_2": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "OCCUPATION_1",
+        "OCCUPATION_2"
+      ]
+    },
+    "ACQUISITION_DATE": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the customer was acquired"
+    },
+    "CANCELLED_DATE": {
+      "type": "string",
+      "format": "date",
+      "description": "Date in which the customer has no longer more relationship with the AXA Entity"
+    },
+    "CUSTOMER_TYPE_CODE": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Type of Customer, possible values are Corporate or Retail. Check the Ref.Tab Customer Type tab to see possible values and its codification"
+    },
+    "CUSTOMER_STATUS_CODE": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Status of the Customer. The possible values and codification are defined in the Ref. Tab Customer Status"
+    },
+    "RESIDENCE_FLAG": {
+      "type": "string",
+      "maxLength": 1,
+      "description": "Flag to indicate the customer is a resident in the country of the AXA local entity. (Y/N)"
+    },
+    "SPECIAL_ATTENTION_FLAG": {
+      "type": "string",
+      "maxLength": 1,
+      "description": "If this customer needs to be flagged or monitored by any special reason",
+    },
+    "DECEASED_FLAG": {
+      "type": "string",
+      "maxLength": 1,
+      "description": "Flag to indicate if the customer is deceased. (Y/N)"
+    },
+    "COMPLEX_STRUCTURE": {
+      "type": "string",
+      "maxLength": 1,
+      "description": "Flag to indicate if corporate customer is displaying a complex structure. (Y/N)"
+    },
+    "VAT_NUMBER": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "VAT/ Sales tax no"
+    },
+    "BLACK_LISTED_FLAG": {
+      "type": "string",
+      "maxLength": 1,
+      "description": "Flag to indicate the Customer is on a black list. (Y/N)"
+    },
+    "TAX_NUMBER": {
+      "type": "string",
+      "maxLength": 25,
+      "description": "Customers Tax Number used for tax purposes e.g., SSN, TIN, NI Number, TFN etc"
+    },
+    "TAX_NUMBER_ISSUED_BY": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Country which issued the Customer s Tax Number used for tax purposes e.g., SSN, TIN, NI Number, TFN etc"
+    },
+    "CUSTOMER_CATEGORY_CODE": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Field for additional information about segmentation of customer Ref RETAIL"
+    },
+    "ADDRESS_VALID_FROM": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The earliest timestamp this address has been associated to this customer"
+    },
+    "ADDRESS_VALID_TO": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The latest timestamp this address has been associated to this customer"
+    },
+    "EMAIL": {
+      "type": "string",
+      "maxLength": 256,
+      "description": "Full main email address"
+    },
+    "EMAIL_VALID_FROM": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The earliest timestamp this main email address has been associated to this customer"
+    },
+    "EMAIL_VALID_TO": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The latest timestamp this main email address has been associated to this customer"
+    },
+    "PHONE_COUNTRY_CODE": {
+      "type": "string",
+      "maxLength": 5,
+      "description": "International main phone country code"
+    },
+    "PHONE_AREA_CODE": {
+      "type": "string",
+      "maxLength": 5,
+      "description": "Main phone area code"
+    },
+    "PHONE_NUMBER": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Main phone number",
+    },
+    "PHONE_EXTENSION": {
+      "type": "string",
+      "maxLength": 6,
+      "description": "Main phone extension"
+    },
+    "PHONE_VALID_FROM": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The earliest timestamp this main phone has been associated to this customer"
+    },
+    "PHONE_VALID_TO": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The latest timestamp this main phone has been associated to this customer"
+    },
+    "ALTERNATE_NAME": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Customer alternate name"
+    },
+    "TAX_NUMBER_TYPE": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Customers Tax Number Type e.g., SSN, TIN, NI Number, TFN etc"
+    },
+    "COUNTRY_OF_HQ": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Only for Corporate Customers. ISO Country Code of the country where the headquarters of the entity is located. Check the Ref. Tab COUNTRY"
+    },
+    "COUNTRY_OF_OPERATIONS": {
+      "type": "object",
+      "properties": {
+        "COUNTRY_OF_OPERATIONS_1": {
+          "type": "string",
+          "enum": [
+            "PR",
+            "PS",
+            "PT",
+            "PW",
+            "PY",
+            "QA",
+            "RE",
+            "RO",
+            "RS",
+            "RU",
+            "RW",
+            "SA",
+            "SB",
+            "SC",
+            "SD",
+            "SE",
+            "SG",
+            "SH",
+            "SI",
+            "SJ",
+            "SK",
+            "SL",
+            "SM",
+            "SN",
+            "NR",
+            "SO",
+            "SR",
+            "SS",
+            "ST",
+            "SV",
+            "SX",
+            "SY",
+            "SZ",
+            "TC",
+            "TD",
+            "TF",
+            "TG",
+            "TH",
+            "TJ",
+            "TK",
+            "TL",
+            "TM",
+            "TN",
+            "TO",
+            "TR",
+            "TT",
+            "TV",
+            "TW",
+            "TZ",
+            "UA",
+            "UG",
+            "UM",
+            "US",
+            "UY",
+            "UZ",
+            "VA",
+            "VC",
+            "VE",
+            "VG",
+            "VI",
+            "VN",
+            "VU",
+            "WF",
+            "WS",
+            "X1",
+            "X2",
+            "X3",
+            "XK",
+            "YE",
+            "YT",
+            "ZA",
+            "ZM",
+            "ZW"
+          ]
+        }
+      },
+      "required": [
+        "COUNTRY_OF_OPERATIONS_1"
+      ]
+    },
+    "COUNTRY_OF_TAX_RESIDENCE": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Only for Retail Customers. ISO Country Code of the Country of Tax Residence"
+    },
+    "NATIONALITY_CODE_2": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Only for Retail Customers. ISO Country Code of the secondary nationality of the customer"
+    },
+    "CUSTOMER_IDENTIFICATION": {
+      "type": "array",
+      "description": "JSON Array with all attributes for the customer identification.",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "IDENTIFICATION_NUMBER": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Value   on   Identity   document,  e.g.  Passport number, TAX ID, Drivers Licence number. Not the Type of Document, the value of the document"
+    },
+    "ISSUING_AUTHORITY": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Issuing  authority  or  territory where the id document  is from"
+    },
+    "COUNTRY_CODE": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "ISO Country Code of the issuing country of the document Ref COUNTRY",
+    },
+    "IDENTIFICATION_TYPE": {
+      "type": "string",
+      "maxLength": 32,
+      "description": "Type  of  ID  e.g.  Passport/Tax  ID.  Must  be one   of   codes   defined   in   the   table Identification types"
+    },
+    "VALID_FROM": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The unique identifier for a product"
+    },
+    "VALID_TO": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The unique identifier for a product",
+    },
+    "X_SUBSCRIPTION_KEYWORD": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Type of subscription"
+    },
+    "X_SOURCE_SYSTEM": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Source system from where the party is originated from"
+    },
+    "X_SENSITIVE_CUSTOMER_FLAG": {
+      "type": "string",
+      "maxLength": 1,
+      "description": "Is sentive customer (Y/N/Empty)"
+    },
+    "X_OLD_CUSTOMER_SOURCE_UNIQUE_ID": {
+      "type": "string",
+      "maxLength": 126,
+      "description": "This field is informative field for potential tracability, In case of record is detected changing from old ID to new ID, the new record needs to be sent with this field filled with old ID"
+    },
+    "X_NEW_CUSTOMER_SOURCE_UNIQUE_ID": {
+      "type": "string",
+      "maxLength": 126,
+      "description": "This field is informative field for potential tracability in case of record is detected changing from old ID to new ID, the old record needs to be sent with this field filled with the new id (this old record normally needs to have X_SCREENING_DATE filled)"
+    },
+    "X_CUSTOMER_INTERMEDIARY_REF_ID": {
+      "type": "string",
+      "maxLength": 126,
+      "description": "Your intermediary source ID, for future use"
+    },
+    "X_SCREENING_END_DATE": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of end of screening of this record, needs to be = sysdate or in the future"
+    },
+    "BUSINESSES_SEGMENT_1_1": {
+      "type": "string",
+      "maxLength": 6,
+      "description": "Each of the different values provided for BUSINESS_SEGMENT_1. N is the sequential number of each value."
+    },
+    "MARITAL_STATUS": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "If personal/individual customer - Marital Status Code. LOOKUP table dictionary."
+    },
+    "COUNTRY_OF_OPERATIONS_1": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Each of the different values provided for COUNTRY_OF_OEPRATIONS. N is the sequential number of each value."
+    },
+    "OCCUPATION_1": {
+      "type": "string",
+      "maxLength": 6,
+      "description": "Each of the different values provided for OCCUPATION. N is the sequential number of each value."
+    }
+  },
+  "required": [
+    "RUN_TIMESTAMP",
+    "CUSTOMER_SOURCE_UNIQUE_ID",
+    "ORGUNIT_CODE",
+    "PERSON_TITLE",
+    "FIRST_NAME",
+    "MIDDLE_NAMES",
+    "LAST_NAME",
+    "SUFFIX",
+    "CUSTOMER_NAME",
+    "COMPANY_NAME",
+    "COMPANY_FORM",
+    "REGISTERED_NUMBER",
+    "INCORPORATION_DATE",
+    "INCORPORATION_COUNTRY_CODE",
+    "BUSINESS_SEGMENT_1",
+    "BUSINESS_SEGMENT_2",
+    "INITIALS",
+    "DATE_OF_BIRTH",
+    "NAME_OF_BIRTH",
+    "ADDRESS",
+    "ZONE",
+    "CITY",
+    "POSTAL_CODE",
+    "COUNTRY_OF_RESIDENCE",
+    "COUNTRY_OF_ORIGIN",
+    "NATIONALITY_CODE",
+    "PLACE_OF_BIRTH",
+    "GENDER_CODE",
+    "EMPLOYEE_FLAG",
+    "OCCUPATION",
+    "ACQUISITION_DATE",
+    "CANCELLED_DATE",
+    "CUSTOMER_TYPE_CODE",
+    "CUSTOMER_STATUS_CODE",
+    "RESIDENCE_FLAG",
+    "SPECIAL_ATTENTION_FLAG",
+    "DECEASED_FLAG",
+    "COMPLEX_STRUCTURE",
+    "VAT_NUMBER",
+    "BLACK_LISTED_FLAG",
+    "TAX_NUMBER",
+    "TAX_NUMBER_ISSUED_BY",
+    "CUSTOMER_CATEGORY_CODE",
+    "ADDRESS_VALID_FROM",
+    "ADDRESS_VALID_TO",
+    "EMAIL",
+    "EMAIL_VALID_FROM",
+    "EMAIL_VALID_TO",
+    "PHONE_COUNTRY_CODE",
+    "PHONE_AREA_CODE",
+    "PHONE_NUMBER",
+    "PHONE_EXTENSION",
+    "PHONE_VALID_FROM",
+    "PHONE_VALID_TO",
+    "ALTERNATE_NAME",
+    "TAX_NUMBER_TYPE",
+    "COUNTRY_OF_HQ",
+    "COUNTRY_OF_OPERATIONS",
+    "COUNTRY_OF_TAX_RESIDENCE",
+    "NATIONALITY_CODE_2",
+    "CUSTOMER_IDENTIFICATION",
+    "IDENTIFICATION_NUMBER",
+    "ISSUING_AUTHORITY",
+    "COUNTRY_CODE",
+    "IDENTIFICATION_TYPE",
+    "VALID_FROM",
+    "VALID_TO",
+    "X_SUBSCRIPTION_KEYWORD",
+    "X_SOURCE_SYSTEM",
+    "X_SENSITIVE_CUSTOMER_FLAG",
+    "X_OLD_CUSTOMER_SOURCE_UNIQUE_ID",
+    "X_NEW_CUSTOMER_SOURCE_UNIQUE_ID",
+    "X_CUSTOMER_INTERMEDIARY_REF_ID",
+    "X_SCREENING_END_DATE",
+    "BUSINESSES_SEGMENT_1_1",
+    "MARITAL_STATUS",
+    "COUNTRY_OF_OPERATIONS_1",
+    "OCCUPATION_1"
+  ]
+}

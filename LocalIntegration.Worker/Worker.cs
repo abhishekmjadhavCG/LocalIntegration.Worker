@@ -14,7 +14,7 @@ namespace LocalIntegration.Worker
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            Log.Information("Scheduler started");
+            Log.Information("\n\nScheduler started");
             
             var sourcesFilePath = Environment.GetEnvironmentVariable("JSON_SOURCE_FILE_PATH");
             var sourcesFile = Environment.GetEnvironmentVariable("JSON_SOURCE_FILE_NAME");
@@ -37,10 +37,12 @@ namespace LocalIntegration.Worker
                 { 
                     Log.Error("Scheduler stopping as json file is not validated.");
                     break;
-                } 
+                }
 
+                Log.Information($"Scheduler stopping...");
                 await Task.Delay(TimeSpan.FromDays(1), stoppingToken);
             }
+           
         }
     }
 }

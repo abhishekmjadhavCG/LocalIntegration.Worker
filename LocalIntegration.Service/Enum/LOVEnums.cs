@@ -106,6 +106,7 @@ namespace LocalIntegration.Service.Enum
             SL,  //Sierra Leone            
             SM,  //San Marino
             SN,  //Senegal
+            NR,  // Nauru
             SO,  //Somalia
             SR,  ///Suriname
             SS,  //South Sudan

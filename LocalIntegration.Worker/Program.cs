@@ -1,4 +1,6 @@
+using LocalIntegration.Service.Core;
 using Serilog;
+using System.Reflection;
 
 namespace LocalIntegration.Worker
 {
@@ -6,9 +8,10 @@ namespace LocalIntegration.Worker
     {
         public static void Main(string[] args)
         {
+            var currentDirectory = new System.Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath.Split("/bin")[0];
             Environment.SetEnvironmentVariable("JSON_SOURCE_FILE_PATH", @"C:\Users\amohanja\WorkRelated\Project");
-            Environment.SetEnvironmentVariable("JSON_SOURCE_FILE_NAME", "Sources.json");
-            Environment.SetEnvironmentVariable("JSON_SCHEMA_NR08_FILE_PATH", @"C:\Users\amohanja\WorkRelated\Important Files for development\NORKOM GAP");
+            Environment.SetEnvironmentVariable("JSON_SOURCE_FILE_NAME", "Sample JSON Source structure.json"); //"Sources.json Sample JSON Source structure.json");
+            Environment.SetEnvironmentVariable("JSON_SCHEMA_NR08_FILE_PATH", $@"{currentDirectory}"); //C:\Users\amohanja\WorkRelated\Important Files for development\NORKOM GAP");
             Environment.SetEnvironmentVariable("JSON_SCHEMA_NR08_FILE_NAME", "JSON-SCHEMA-NR08.json");
             Environment.SetEnvironmentVariable("LOG_FILE_PATH", $@"C:\LIL_LOGS\LogFile.txt");
             
@@ -27,6 +30,7 @@ namespace LocalIntegration.Worker
             {
                 services.AddHostedService<Worker>();
             })
+            .UseSerilog()
             .Build().Run();            
         }
     }
