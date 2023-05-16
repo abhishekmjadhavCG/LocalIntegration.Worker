@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocalIntegration.Service.Core
+namespace LocalIntegration.Service.Core.Model
 {
     public class OCCUPATION
     {
@@ -13,6 +13,6 @@ namespace LocalIntegration.Service.Core
         public string OCCUPATION_1 { get; set; }
 
         [MaxLength(6)]
-        public string OCCUPATION_2 { get;set; }
+        public string OCCUPATION_2 { get; set; }
     }
 }

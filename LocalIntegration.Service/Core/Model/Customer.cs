@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace LocalIntegration.Service.Core
+namespace LocalIntegration.Service.Core.Model
 {
     public class Customer
     {
@@ -16,12 +16,12 @@ namespace LocalIntegration.Service.Core
         public string CUSTOMER_SOURCE_UNIQUE_ID { get; set; }
 
         [Required]
-        public DateTime RUN_TIMESTAMP { get;set; }
+        public DateTime RUN_TIMESTAMP { get; set; }
 
         [Required]
         [MaxLength(3)]
         public string ORGUNIT_CODE { get; set; }
-        
+
         [MaxLength(50)]
         public string PERSON_TITLE { get; set; } //Business Mandatory
 
@@ -39,7 +39,7 @@ namespace LocalIntegration.Service.Core
 
         [Required]
         [MaxLength(100)]
-        public string CUSTOMER_NAME { get; set; } 
+        public string CUSTOMER_NAME { get; set; }
 
         [MaxLength(1000)]
         public string COMPANY_NAME { get; set; } //Business Mandatory
@@ -99,7 +99,7 @@ namespace LocalIntegration.Service.Core
         public string EMPLOYEE_FLAG { get; set; } //Business Mandatory
 
         public OCCUPATION OCCUPATION { get; set; }  //Business Mandatory
-                                                  
+
         [MaxLength(6)]
         public string OCCUPATION_1 { get; set; }  //Business Mandatory
 
@@ -109,11 +109,11 @@ namespace LocalIntegration.Service.Core
 
         [Required]
         [MaxLength(20)]
-        public string CUSTOMER_TYPE_CODE { get; set; } 
+        public string CUSTOMER_TYPE_CODE { get; set; }
 
         [Required]
         [MaxLength(10)]
-        public string CUSTOMER_STATUS_CODE { get; set; } 
+        public string CUSTOMER_STATUS_CODE { get; set; }
 
         [MaxLength(1)]
         public string RESIDENCE_FLAG { get; set; }  //Business Mandatory
@@ -145,7 +145,7 @@ namespace LocalIntegration.Service.Core
         public string ADDRESS_VALID_FROM { get; set; } //Business Mandatory
 
 
-        public string ADDRESS_VALID_TO { get;set; } //Business Mandatory
+        public string ADDRESS_VALID_TO { get; set; } //Business Mandatory
 
         [MaxLength(256)]
         public string EMAIL { get; set; } //Business Mandatory
@@ -153,7 +153,7 @@ namespace LocalIntegration.Service.Core
 
         public string EMAIL_VALID_FROM { get; set; } //Business Mandatory
 
-        public string EMAIL_VALID_TO { get;set; } //Business Mandatory
+        public string EMAIL_VALID_TO { get; set; } //Business Mandatory
 
         [MaxLength(5)]
         public string PHONE_COUNTRY_CODE { get; set; } //Business Mandatory

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocalIntegration.Service.Core
+namespace LocalIntegration.Service.Core.Model
 {
     public class BUSINESS_SEGMENT_1
     {
@@ -41,8 +41,8 @@ namespace LocalIntegration.Service.Core
 
         [MaxLength(6)]
         public string BUSINESS_SEGMENT_1_11 { get; set; }
-        
-        [MaxLength(6)]        
+
+        [MaxLength(6)]
         public string BUSINESS_SEGMENT_1_12 { get; set; }
 
         [MaxLength(6)]
@@ -62,10 +62,10 @@ namespace LocalIntegration.Service.Core
 
         [MaxLength(6)]
         public string BUSINESS_SEGMENT_1_18 { get; set; }
-        
+
         [MaxLength(6)]
         public string BUSINESS_SEGMENT_1_19 { get; set; }
-        
+
         [MaxLength(6)]
         public string BUSINESS_SEGMENT_1_20 { get; set; }
 

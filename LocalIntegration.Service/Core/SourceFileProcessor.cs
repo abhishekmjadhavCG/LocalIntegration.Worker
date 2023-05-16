@@ -8,24 +8,33 @@ using System.Threading.Tasks;
 using Serilog;
 using System.Diagnostics;
 using static LocalIntegration.Service.Enum.LOVEnums;
+using LocalIntegration.Service.Core.Validator.Validator;
 
 namespace LocalIntegration.Service.Core
 {
     public class SourceFileProcessor : ISourceFileProcessor
     {
-        #region Declarations
 
+        #region Declarations
+        
         string sourcesFile = string.Empty;
         string sourcesFilePath = string.Empty;
         string schemaFile = string.Empty;
         string schemaFilePath = string.Empty;
         string combineSourcesFilePath = string.Empty;
+        string combineSchemaFilePath;
         string headers = string.Empty;
+
+        private readonly ISourceValidator _sourceValidator;
 
         #endregion
 
         #region Constructor
 
+        public SourceFileProcessor(ISourceValidator sourceValidator)
+        {
+            _sourceValidator = sourceValidator;
+        }
         public SourceFileProcessor(string jsonPath)
         {
            LoadFileDetails();           
@@ -52,8 +61,11 @@ namespace LocalIntegration.Service.Core
         #region ReadFileAsync
 
         public async Task<bool> ReadFileAsync()
-        {            
+        {
+            JSchema? schema;
+            JObject? customer;
             var isFileValid = false;
+
             using (StreamReader reader = new StreamReader(combineSourcesFilePath))
             {
                 int counter = 0;
@@ -63,13 +75,7 @@ namespace LocalIntegration.Service.Core
                 {
 
                     while (!reader.EndOfStream)
-                    {
-                        //if (counter == 0)
-                        //{
-                        //    headers = await reader.ReadLineAsync();
-                        //    counter++;
-                        //    continue;
-                        //}
+                    {                        
                         Log.Information($"Starting reading each line in the file...");
                         var eachCustomerDataJson = await reader.ReadLineAsync();
 
@@ -80,7 +86,11 @@ namespace LocalIntegration.Service.Core
                             continue;
                         }
 
-                        isFileValid = await Task.Run(() => ValidateSourceFields(eachCustomerDataJson));
+                        combineSchemaFilePath = Path.Combine(schemaFilePath + "\\JsonSchema", schemaFile);
+                        schema = JSchema.Parse(File.ReadAllText(combineSchemaFilePath));
+                        customer = JObject.Parse(eachCustomerDataJson);
+
+                        isFileValid = await _sourceValidator.ValidateSourceFieldsAsync(eachCustomerDataJson, schema, customer);                        
 
                         if (!isFileValid)
                         {
@@ -98,6 +108,8 @@ namespace LocalIntegration.Service.Core
                 {
                     reader.Close();
                     reader.Dispose();
+                    schema = null;
+                    customer = null;
                 }
 
                 Log.Information($"Time taken for reading and validating the file - {watch.Elapsed.ToString()}");                
@@ -113,45 +125,42 @@ namespace LocalIntegration.Service.Core
 
         #region ValidateSourceFields
 
-        private bool ValidateSourceFields(string? eachCustomerData)
-        {
-            bool isValidFile = false;
-            JSchema? schema;
-            JObject? customer;
+        //private bool ValidateSourceFields(string? eachCustomerData)
+        //{
+        //    bool isValidFile = false;
+        //    JSchema? schema;
+        //    JObject? customer;
 
-            try
-            {                
-                var combineSchemaFilePath = Path.Combine(schemaFilePath + "\\JsonSchema", schemaFile);
+        //    try
+        //    {                
+                
 
-                schema = JSchema.Parse(File.ReadAllText(combineSchemaFilePath));
-                customer = JObject.Parse(eachCustomerData); 
+        //        IList<string> errorMessages;
+        //        isValidFile = customer.IsValid(schema, out errorMessages);                
+        //        if (!isValidFile)
+        //        {
+        //            Log.Error($"Incorrect json data of the customer at below line \n \n {eachCustomerData} \n\n.");
+        //            foreach (var errorMessage in errorMessages)
+        //            {
+        //                Log.Error($" Fix the following errors: \n\n Error : {errorMessages.IndexOf(errorMessage) + 1 } - {errorMessage} \n");
+        //            }
 
-                IList<string> errorMessages;
-                isValidFile = customer.IsValid(schema, out errorMessages);                
-                if (!isValidFile)
-                {
-                    Log.Error($"Incorrect json data of the customer at below line \n \n {eachCustomerData} \n\n.");
-                    foreach (var errorMessage in errorMessages)
-                    {
-                        Log.Error($" Fix the following errors: \n\n Error : {errorMessages.IndexOf(errorMessage) + 1 } - {errorMessage} \n");
-                    }
+        //            return isValidFile;
+        //        }
 
-                    return isValidFile;
-                }
-
-                //var isComplexValidationsPassed = ValidateSourceFieldsForComplexScenario(eachCustomerData);
-            }
-            catch (Exception ex)
-            {
-                Log.Error($"Error occured while validating the file : {ex.Message} on the following data \n \n {eachCustomerData} \n \n");
-            }
-            finally 
-            {
-                schema = null;
-                customer = null;
-            }
-            return isValidFile;
-        }
+        //        //var isComplexValidationsPassed = ValidateSourceFieldsForComplexScenario(eachCustomerData);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error($"Error occured while validating the file : {ex.Message} on the following data \n \n {eachCustomerData} \n \n");
+        //    }
+        //    finally 
+        //    {
+        //        schema = null;
+        //        customer = null;
+        //    }
+        //    return isValidFile;
+        //}
 
         private bool ValidateSourceFieldsForComplexScenario(string eachCustomerData)
         {
